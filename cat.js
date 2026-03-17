@@ -7,7 +7,7 @@ cats(currentPage, value);
 }
 changePage = (newPage) => {
     currentPage = newPage;
-    cats(currentPage, quantityInput.value);
+    cats(currentPage * quantityInput.value, quantityInput.value);
     renderPagination(quantityInput.value);
 }
 
@@ -15,11 +15,11 @@ previousPage = (n) => {
     if (currentPage > 0) {
         if (n === 1) {
         currentPage--;
-        cats(currentPage, quantityInput.value);
+        cats(currentPage * quantityInput.value, quantityInput.value);
         renderPagination(quantityInput.value);
         }else if(n === 10){
             currentPage -= 10;
-            cats(currentPage, quantityInput.value);
+            cats(currentPage *quantityInput.value, quantityInput.value);
             renderPagination(quantityInput.value);
         }
     }
@@ -28,11 +28,11 @@ previousPage = (n) => {
 nextPage = (n) => {
     if (n === 1) {
         currentPage++;
-        cats(currentPage, quantityInput.value);
+        cats(currentPage * quantityInput.value, quantityInput.value);
         renderPagination(quantityInput.value);
     }else if(n === 10){
         currentPage += 10;
-        cats(currentPage, quantityInput.value);
+        cats(currentPage * quantityInput.value, quantityInput.value);
         renderPagination(quantityInput.value);
     }
 }
@@ -79,7 +79,7 @@ const renderPagination = (quantity)=>{
 renderPagination(quantityInput.value);
 
 
-const cats = (page, count)=>{
+const cats = (skip, limit)=>{
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         if (this.status === 200) {
@@ -88,8 +88,8 @@ const cats = (page, count)=>{
         }
     };
 
-    xhttp.open("GET", `https://cataas.com/api/cats?skip=${page}&limit=${count}`);
+    xhttp.open("GET", `https://cataas.com/api/cats?skip=${skip}&limit=${limit}`);
     xhttp.send();
     return xhttp;
 }
-cats(currentPage, quantityInput.value);
+cats(currentPage * quantityInput.value, quantityInput.value);
