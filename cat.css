@@ -54,3 +54,15 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.cat-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(187, 212, 227);
+}
+.cat-card :hover{
+   cursor: pointer;
+}
