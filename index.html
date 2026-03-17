@@ -1,26 +1,59 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cat Store</title>
-    <link rel="stylesheet" href="cat.css">
+    <link rel="stylesheet" href="cat.css" />
     <script src="cat.js" defer></script>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1 class="title">Cat Store</h1>
-        <p class="description">Welcome to the world of cats! Here you can find all the information you need about these adorable creatures.</p>
-        <div id="cats" class="cats"></div>
-        <div class="pagination">
-            <input type="number" id="quantity" class="page-number" min="1" value="10" onchange="updateQuantity( this.value )">
-            <button id="back-10" class="pagination-button" onclick="previousPage(10)">«</button>
-            <button id="prev" class="pagination-button" onclick="previousPage(1)">‹</button>
-            <div id="page" class="page-info"></div>
-            <button id="next" class="pagination-button " onclick="nextPage(1)">›</button>
-            <button id="next-10" class="pagination-button" onclick="nextPage(10)">»</button>
-        </div>
+      <h1 class="title">Cat Store</h1>
+      <p class="description">
+        Welcome to the world of cats! Here you can find all the information you
+        need about these adorable creatures.
+      </p>
+      <div id="cats" class="cats"></div>
+      <div class="pagination">
+        <select
+          type="select"
+          id="quantity"
+          class="page-number"
+          min="1"
+          value="10"
+          onchange="updateQuantity(this.value)"
+        >
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
+        </select>
+        <button
+          id="back-10"
+          class="pagination-button prev"
+          onclick="previousPage(10)"
+        >
+          «
+        </button>
+        <button
+          id="prev"
+          class="pagination-button prev"
+          onclick="previousPage(1)"
+        >
+          ‹
+        </button>
+        <div id="page" class="page-info"></div>
+        <button id="next" class="pagination-button next" onclick="nextPage(1)">
+          ›
+        </button>
+        <button
+          id="next-10"
+          class="pagination-button next"
+          onclick="nextPage(10)"
+        >
+          »
+        </button>
+      </div>
     </div>
-    </body>
-
+  </body>
 </html>

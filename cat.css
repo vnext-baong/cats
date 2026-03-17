@@ -4,8 +4,7 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .container{
-    
-
+    margin: auto 5%;
 }
 .title{
     text-align: center;
@@ -57,11 +56,20 @@
 .cat-card{
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
     padding: 10px;
     border-radius: 5px;
     background-color: rgb(187, 212, 227);
+}
+.cat-image{
+    border-radius: 5px;
+    width: 250px;
+}
+.cat-tags{
+    font-size: 12px;
+    color: gray;
 }
 .cat-card :hover{
    cursor: pointer;

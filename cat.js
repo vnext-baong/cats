@@ -1,36 +1,49 @@
 const quantityInput = document.getElementById("quantity");
 let currentPage = 0;
-updateQuantity = (value) => {
+
+const updateQuantity = (value) => {
+  currentPage = 0;
   renderPagination(value);
   cats(currentPage, value);
 };
-changePage = (newPage) => {
+const changePage = (newPage) => {
   currentPage = newPage;
   cats(currentPage * quantityInput.value, quantityInput.value);
   renderPagination(quantityInput.value);
 };
 
-previousPage = (n) => {
+const previousPage = (n) => {
   if (currentPage > 0) {
     if (n === 1) {
       currentPage--;
       cats(currentPage * quantityInput.value, quantityInput.value);
       renderPagination(quantityInput.value);
-    } else if (n === 10) {
+    } else if (n === 10 && currentPage >= 10) {
       currentPage -= 10;
+      cats(currentPage * quantityInput.value, quantityInput.value);
+      renderPagination(quantityInput.value);
+    } else if (n === 10 && currentPage < 10) {
+      currentPage = 0;
       cats(currentPage * quantityInput.value, quantityInput.value);
       renderPagination(quantityInput.value);
     }
   }
 };
+let totalPages = 0;
 
-nextPage = (n) => {
+const nextPage = (n) => {
   if (n === 1) {
-    currentPage++;
+    if (currentPage < totalPages - 1) {
+      currentPage++;
+    }
     cats(currentPage * quantityInput.value, quantityInput.value);
     renderPagination(quantityInput.value);
   } else if (n === 10) {
-    currentPage += 10;
+    if (currentPage + 10 >= totalPages) {
+      currentPage = totalPages > 0 ? totalPages - 1 : 0;
+    } else {
+      currentPage += 10;
+    }
     cats(currentPage * quantityInput.value, quantityInput.value);
     renderPagination(quantityInput.value);
   }
@@ -50,7 +63,7 @@ const renderPagination = (quantity) => {
         totalCats = parseInt(this.responseText) || 100;
       }
       const pages = Math.ceil(totalCats / quantity);
-
+      totalPages = pages;
       let html = "";
       let lastAdded = 0;
 
@@ -71,6 +84,12 @@ const renderPagination = (quantity) => {
           lastAdded = i;
         }
       }
+      document.querySelectorAll(".prev").forEach((button) => {
+        button.disabled = currentPage === 0;
+      });
+      document.querySelectorAll(".next").forEach((button) => {
+        button.disabled = currentPage >= pages - 1;
+      });
       document.getElementById("page").innerHTML = html;
     }
   };
@@ -88,7 +107,7 @@ const cats = (skip, limit) => {
         .map(
           (cat) =>
             `<div class="cat-card" >
-          <img src="https://cataas.com/cat/${cat.id}" alt="cat" width="250" height="250">
+          <img src="https://cataas.com/cat/${cat.id}" alt="cat" class="cat-image" width="250" height="250">
             <div class="cat-id">ID: ${cat.id}</div>${cat.tags && cat.tags.length > 0 ? `<div class="cat-tags">Tags: ${cat.tags.join(", ")}</div>` : ""}
           </div>`,
         )
