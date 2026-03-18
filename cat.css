@@ -74,3 +74,107 @@
 .cat-card :hover{
    cursor: pointer;
 }
+.modal{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-content{
+    width: 500px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.close{
+    align-self: flex-end;
+    color: rgb(150, 130, 130);
+    border-radius: 5px;
+    cursor: pointer;
+}
+.modal-title{
+    text-align: center;
+    font-size: 1.5em;
+    margin-top: 10px;
+}
+.modal-image{
+    width: 100%;
+    height: auto;
+    max-height: 700px;
+  
+}
+.says{
+    display: flex;
+    align-items: center;
+    justify-content: center ;
+    gap: 10px;
+    margin-top: 20px;
+}
+.cat-says-label{
+    font-size: 14px;
+}
+.cat-says-input{
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+}
+.modal-footer{
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+    margin-top: 20px;
+}
+.btn{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.btn:hover{
+    opacity: 0.8;
+}
+.btn:active{
+    opacity: 1;
+}
+.btn-ok{
+    background-color: #0d88e7;
+    color: white;
+}
+.loading{
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+.loading-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    z-index: 1000;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
